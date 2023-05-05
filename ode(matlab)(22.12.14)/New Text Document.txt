@@ -1,0 +1,30 @@
+beta = 0.5;
+lambda = 0.1;
+Pr = 7;
+thegma = 5;
+n = 0.5;
+Sc = .25;
+E = 5;
+delata = 1;
+tend = 4;
+
+u(1) = 1.00;
+u(2) = 0.5;
+u(3) = -0.51903;
+u(4) = -0.95064;
+
+x0 = [0; 1; u(1); 0 ; u(2); 1; u(3); 1; u(4)];
+
+[t,x] = ode45(@vdp, [0 tend], x0);
+
+function dxdt = vdp(t,x)
+dxdt = [x(2);...
+    x(3); ...
+    (x(2)^2-x1*x3-2*lambda*(x(4)-beta*x(1)*x(5))-2*beta*x(1)*x(2)*x(3))/(1-beta*x(1)^2/2);...
+    x(5);...
+    (x(2)*x(4)-x(1)*x(5)+2*lambda*(x(2)+beta*(x(2)^2-x(1)*x(3)+x(4)^2))-2*beta*x(1)*x(2)*x(5)))*(1-beta*x(1)^2/2);...
+    x(7);...
+    -Pr*x(1)*x(7);...
+    x(9);...
+    Sc*(thegma*(1+delta*x(6))^n*exp(-E/(1+delta*x(6)))*x(8)-x(1)*x(9)];
+end
